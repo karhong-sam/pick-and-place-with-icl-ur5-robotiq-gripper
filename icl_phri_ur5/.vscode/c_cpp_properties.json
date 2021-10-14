@@ -1,0 +1,22 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "",
+        "limitSymbolsToIncludedHeaders": true
+      },
+      "includePath": [
+        "/home/intuitive_computing/catkin_ws/devel/include",
+        "/opt/ros/kinetic/include",
+        "/home/intuitive_computing/catkin_ws/src/robotiq/robotiq_action_server/include",
+        "/home/intuitive_computing/catkin_ws/src/robotiq/robotiq_c_model_control/include",
+        "/home/intuitive_computing/catkin_ws/src/robotiq/robotiq_ethercat/include",
+        "/home/intuitive_computing/catkin_ws/src/robotiq/robotiq_force_torque_sensor/include",
+        "/home/intuitive_computing/catkin_ws/src/robotiq/robotiq_s_model_control/include",
+        "/home/intuitive_computing/catkin_ws/src/ur_modern_driver/include",
+        "/usr/include"
+      ],
+      "name": "Linux"
+    }
+  ]
+}

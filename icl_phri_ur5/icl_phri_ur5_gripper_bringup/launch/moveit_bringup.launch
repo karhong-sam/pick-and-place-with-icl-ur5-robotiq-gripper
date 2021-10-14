@@ -1,0 +1,21 @@
+<launch>
+    <arg name="limited" value="true" />
+    <!-- By default, we do not start a database (it can be large) -->
+    <arg name="db" default="false" />
+    <!-- Allow user to specify database location -->
+    <arg name="db_path" default="$(find icl_phri_ur5_gripper_moveit_config)/default_warehouse_mongo_db" />
+
+    <include file="$(find icl_phri_ur5_gripper_moveit_config)/launch/ur5_gripper_moveit_planning_execution.launch">
+      <arg name="limited" value="$(arg limited)" />
+    </include>
+
+    <include file="$(find icl_phri_ur5_gripper_moveit_config)/launch/moveit_rviz.launch" >
+      <arg name="config" value="true" />
+    </include>
+
+    <!-- If database loading was enabled, start mongodb as well -->
+    <include file="$(find icl_phri_ur5_gripper_moveit_config)/launch/default_warehouse_db.launch" if="$(arg db)">
+      <arg name="moveit_warehouse_database_path" value="$(arg db_path)"/>
+    </include>
+
+</launch>

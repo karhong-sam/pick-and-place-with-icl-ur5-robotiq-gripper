@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+    <launch> 
+        <arg name="camera_rgb_topic" default="/camera1/color/image_raw" />
+        <!-- depth sensor -->
+        <!--arg name="camera_rgb_topic" default="camera1/color/image_raw" /-->
+        <node name="find_object_2d_node" pkg="find_object_2d" type="find_object_2d" output="screen">
+            <remap from="image" to="$(arg camera_rgb_topic)"/>
+        </node>
+
+    </launch> 

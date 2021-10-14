@@ -1,0 +1,16 @@
+<launch>
+		
+	<node name="find_object_3d" pkg="find_object_2d" type="find_object_2d" output="screen">
+		<param name="gui" value="true" type="bool"/>
+		<param name="settings_path" value="~/.ros/find_object_2d.ini" type="str"/>
+		<param name="subscribe_depth" value="true" type="bool"/>
+		<param name="session_path" value="$(find find_object_2d)/saved_pictures/cube_session2.bin" type="str"/>
+		<param name="objects_path" value="" type="str"/>
+		<param name="object_prefix" value="object" type="str"/>
+		
+		<remap from="rgb/image_rect_color" to="/camera1/color/image_raw"/>
+		<remap from="depth_registered/image_raw" to="/camera1/depth/image_raw"/>
+		<remap from="depth_registered/camera_info" to="/camera1/depth/camera_info"/>
+	</node>
+	
+</launch>

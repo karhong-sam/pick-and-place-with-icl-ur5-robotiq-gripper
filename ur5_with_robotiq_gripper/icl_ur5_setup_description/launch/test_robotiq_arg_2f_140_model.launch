@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+
+<launch>
+  <arg name="gui" default="True" />
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find icl_ur5_setup_description)/robots/ur5_robotiq_140_joint_limited.xacro" />
+  <param name="use_gui" value="$(arg gui)"/>
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+</launch>

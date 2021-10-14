@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="ur5_gripper">
+  <!-- include macros for UR5 and the Robotiq eef model -->
+  <xacro:include filename="$(find ur_description)/urdf/common.gazebo.xacro" />
+  <xacro:include filename="$(find ur_description)/urdf/ur5_camera.urdf.xacro" />
+  <xacro:include filename="$(find icl_ur5_setup_description)/urdf/robotiq_arg2f_140_model_macro.xacro" />
+  <xacro:include filename="$(find icl_ur5_setup_description)/urdf/robotiq_fts300.urdf.xacro" />
+  
+  <xacro:macro name="ur5_with_gripper_joint_limited" params="prefix">
+    <!-- arm -->
+    <xacro:ur5_robot prefix="${prefix}" joint_limited="true" 
+      shoulder_pan_lower_limit="${-3*pi/4}" shoulder_pan_upper_limit="${pi/2}"
+      shoulder_lift_lower_limit="${-pi*7/8}" shoulder_lift_upper_limit="${-pi/8}"
+      elbow_joint_lower_limit="${-pi}" elbow_joint_upper_limit="${pi}"
+      wrist_1_lower_limit="${-pi}" wrist_1_upper_limit="${pi}"
+      wrist_2_lower_limit="${-pi}" wrist_2_upper_limit="${pi}"
+      wrist_3_lower_limit="${-pi}" wrist_3_upper_limit="${pi}"
+    />
+
+    <link name="world" />
+    <joint name="fixed_link_robot_base" type="fixed">
+      <parent link= "world" />
+      <child link = "${prefix}base_link" />
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+    </joint>
+
+    <!--force torque sensor-->
+    <xacro:robotiq_fts150 prefix="" parent="ee_link" >
+      <origin xyz="0.009 0 0 " rpy="-${pi/2} 0 -${pi/2}"/>
+    </xacro:robotiq_fts150>
+
+   <!-- gripper -->
+    <xacro:robotiq_arg2f_140 prefix="${prefix}" />
+    <joint name="ur5_ee_link_gripper_base" type="fixed">
+      <parent link= "${prefix}fts_toolside" />
+      <child link = "${prefix}robotiq_arg2f_base_link" />
+      <origin xyz=" 0.0 0.0 0.0" rpy="0.0 0.0 ${pi/2}" />
+    </joint>
+
+    <link name="${prefix}tool" />
+    <joint name="tool_tip" type="fixed">
+      <parent link= "${prefix}ee_link" />
+      <child link = "${prefix}tool" />
+      <origin xyz=" 0.00 0.0 0.2" rpy="0.0 0.0 0.0" />
+    </joint>
+  </xacro:macro>
+
+  <xacro:ur5_with_gripper_joint_limited prefix=""/>
+
+  <!-- Change Color -->
+  <!-- left inner knuckle -->
+  <gazebo reference="left_inner_knuckle">
+      <material>Gazebo/Black</material>
+  </gazebo>
+  <!-- right inner knuckle -->
+  <gazebo reference="right_inner_knuckle">
+      <material>Gazebo/Black</material>
+  </gazebo>
+  <!-- left outer knuckle -->
+  <gazebo reference="left_outer_knuckle">
+      <material>Gazebo/Black</material>
+  </gazebo>
+  <!-- right outer knuckle -->
+  <gazebo reference="right_outer_knuckle">
+      <material>Gazebo/Black</material>
+  </gazebo>
+  <!-- left inner finger  -->
+  <gazebo reference="left_inner_finger">
+      <material>Gazebo/Black</material>
+  </gazebo>
+  <!-- right inner finger -->
+  <gazebo reference="right_inner_finger">
+      <material>Gazebo/Black</material>
+  </gazebo>
+  <!-- left outer finger  -->
+  <gazebo reference="left_outer_finger">
+      <material>Gazebo/Black</material>
+  </gazebo>
+  <!-- right outer finger -->
+  <gazebo reference="right_outer_finger">
+      <material>Gazebo/Black</material>
+  </gazebo>
+  <!-- left finger tip -->
+  <gazebo reference="left_finger_tip">
+      <material>Gazebo/Black</material>
+  </gazebo>
+  <!-- right finger tip -->
+  <gazebo reference="right_finger_tip">
+      <material>Gazebo/Black</material>
+  </gazebo>
+
+ <!-- Plugin -->
+  <gazebo>
+      <plugin name="gazebo_grasp_fix" filename="libgazebo_grasp_fix.so">
+          <arm>
+              <arm_name>ur5</arm_name>
+              <palm_link>wrist_3_link</palm_link>
+              <gripper_link>left_outer_knuckle</gripper_link>
+              <gripper_link>right_outer_knuckle</gripper_link>
+              <gripper_link>left_inner_finger</gripper_link>
+              <gripper_link>right_inner_finger</gripper_link>
+          </arm>
+          <forces_angle_tolerance>90</forces_angle_tolerance>
+          <update_rate>4</update_rate>
+          <grip_count_threshold>4</grip_count_threshold>
+          <max_grip_count>8</max_grip_count>
+          <release_tolerance>0.005</release_tolerance>
+          <disable_collisions_on_attach>false</disable_collisions_on_attach>
+          <contact_topic>__default_topic__</contact_topic>
+      </plugin>
+  </gazebo>
+</robot>
