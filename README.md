@@ -4,7 +4,7 @@
 
 1. Ubuntu 18.04 LTS
 2. [ROS Melodic](http://wiki.ros.org/melodic/Installation/Ubuntu)
-3. [MoveIt!](https://moveit.ros.org/install/) Package
+3. [MoveIt!](http://docs.ros.org/en/melodic/api/moveit_tutorials/html/doc/getting_started/getting_started.html)
 
 
 ## Getting Started:
