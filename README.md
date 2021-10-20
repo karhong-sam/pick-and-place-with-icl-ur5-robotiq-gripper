@@ -5,6 +5,7 @@
 1. Ubuntu 18.04 LTS
 2. [ROS Melodic](http://wiki.ros.org/melodic/Installation/Ubuntu)
 3. [MoveIt!](http://docs.ros.org/en/melodic/api/moveit_tutorials/html/doc/getting_started/getting_started.html)
+4. [OpenNI Kinect Package (Camera)](https://www.oreilly.com/library/view/learning-robotics-using/9781788623315/1235f7fe-3637-412a-a386-05859b89ee67.xhtml)
 
 
 ## Getting Started:
@@ -68,6 +69,10 @@ ur5_robotiq_ws
 ### (OPTIONAL) Apply Object Detection to Motion Planning:
 
     rosrun scripts vision_grasp.py
+    
+## Debug
+
+    check on [here](https://github.com/khs-sm/pick-and-place-with-icl-ur5-robotiq-gripper/wiki)
     
 ## References
 1. [universal robot](https://github.com/ros-industrial/universal_robot)
