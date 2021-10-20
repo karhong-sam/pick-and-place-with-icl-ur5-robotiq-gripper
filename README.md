@@ -62,6 +62,8 @@ ur5_robotiq_ws
 
     rosrun scripts test_grasp.py
     
+![pick_place_test](https://user-images.githubusercontent.com/59763695/138029853-1d45df31-9ce7-4690-9e03-8bfdcff6afa1.gif)
+    
 ### (OPTIONAL) Launch Object Detection with find_object_2d:
 
     roslaunch find-object start_find_object_3d_session.launch
@@ -79,3 +81,4 @@ check on [here](https://github.com/khs-sm/pick-and-place-with-icl-ur5-robotiq-gr
 2. [robotiq](https://github.com/ros-industrial/robotiq)
 3. [icl_phri_ur5](https://github.com/intuitivecomputing/icl_phri_ur5)
 4. [find_object_2d](https://github.com/introlab/find-object)
+
