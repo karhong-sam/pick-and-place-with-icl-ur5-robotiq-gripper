@@ -72,7 +72,7 @@ ur5_robotiq_ws
     
 ## Debug
 
-    check on [here](https://github.com/khs-sm/pick-and-place-with-icl-ur5-robotiq-gripper/wiki)
+check on [here](https://github.com/khs-sm/pick-and-place-with-icl-ur5-robotiq-gripper/wiki)
     
 ## References
 1. [universal robot](https://github.com/ros-industrial/universal_robot)
